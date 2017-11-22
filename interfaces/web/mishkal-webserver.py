@@ -35,7 +35,14 @@ def test():
 	  logger=myLogger
     );
     # for options see http://pythonpaste.org/modules/httpserver.html
-    httpserver.serve(app, host='0.0.0.0', port='8080')
+    import socket
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    result = sock.connect_ex(('0.0.0.0',8080))
+    if result == 1:
+        httpserver.serve(app, host='0.0.0.0', port='8080')
+    else:
+        print("Cannot start mishkal: a server is already up and running on 0.0.0.0:8080")
+
 
 if __name__ == '__main__':
 	test();
