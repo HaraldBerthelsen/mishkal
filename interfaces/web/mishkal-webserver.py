@@ -1,5 +1,5 @@
 #! /usr/bin/python
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 
 import sys
 import os.path
@@ -35,13 +35,20 @@ def test():
 	  logger=myLogger
     );
     # for options see http://pythonpaste.org/modules/httpserver.html
-    import socket
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    result = sock.connect_ex(('0.0.0.0',8080))
-    if result == 1:
-        httpserver.serve(app, host='0.0.0.0', port='8080')
-    else:
-        print("Cannot start mishkal: a server is already up and running on 0.0.0.0:8080")
+
+    # org
+    httpserver.serve(app, host='0.0.0.0', port='8080')
+    # END org
+    
+    # HL changes
+    # import socket
+    # sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # result = sock.connect_ex(('0.0.0.0',8080))
+    # if result == 1:
+    #     httpserver.serve(app, host='0.0.0.0', port='8080')
+    # else:
+    #     print("Cannot start mishkal: a server is already up and running on 0.0.0.0:8080")
+    # END HL changes
 
 
 if __name__ == '__main__':
