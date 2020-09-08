@@ -23,8 +23,14 @@ def test():
     d=fromFs(os.path.dirname(sys.argv[0]))
     LOG_FILENAME = os.path.join(d,u'tmp','logging_example.out')
     logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO,)
-    myLogger=logging.getLogger('MyTestWebApp')
-    h=logging.StreamHandler() # in production use WatchedFileHandler or RotatingFileHandler
+    myLogger=logging.getLogger('Mishkal')
+
+    #HB
+    #h=logging.StreamHandler() # in production use WatchedFileHandler or RotatingFileHandler
+    import logging.handlers
+    h = logging.handlers.SysLogHandler(address = '/dev/log')
+    #END HB
+    
     h.setFormatter(logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"))
     myLogger.addHandler(h)
     myLogger.setLevel(logging.INFO) # in production use logging.INFO
